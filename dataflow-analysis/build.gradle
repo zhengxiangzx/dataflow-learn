@@ -1,0 +1,29 @@
+allprojects {
+    apply plugin: 'idea'
+}
+
+subprojects {
+    apply plugin: 'idea'
+    apply plugin: 'java'
+    sourceCompatibility = 1.8
+
+    repositories {
+        mavenLocal()
+        mavenCentral()
+    }
+
+    task success {
+        doLast {
+            println "the $task.project.name is Success!"
+        }
+    }
+
+    dependencies {
+        compile 'org.apache.nifi:nifi-commons:1.6.0'
+        compile 'org.apache.nifi:nifi-api:1.6.0'
+        compile('org.apache.nifi:nifi-site-to-site-client:1.6.0')
+        compile('org.apache.nifi:nifi-spark-receiver:1.6.0')
+    }
+
+
+}

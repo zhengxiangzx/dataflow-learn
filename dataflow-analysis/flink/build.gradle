@@ -1,0 +1,33 @@
+group 'flink-study'
+version '1.0'
+
+apply plugin: 'java'
+apply plugin: 'scala'
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'org.flinkstudy.day2.WikipediaAnalysis'
+    }
+    from {
+        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
+
+dependencies {
+    //compile 'org.apache.flink:flink-java:1.5.0'
+    //compile 'org.apache.flink:flink-streaming-java_2.11:1.5.0'
+    compile 'org.apache.flink:flink-clients_2.11:1.5.0'
+    compile 'org.apache.flink:flink-connector-wikiedits_2.11:1.5.0'
+    compile 'org.apache.flink:flink-connector-kafka-0.8_2.11:1.5.0'
+    //此连接器提供可以读取和写入Apache NiFi的源（Source）和槽（Sink）
+    compile 'org.apache.flink:flink-connector-nifi_2.11:1.5.0'
+    compile 'org.slf4j:slf4j-log4j12:1.7.7'
+    compile 'log4j:log4j:1.2.17'
+    //scala
+    compile 'org.scala-lang:scala-library:2.11.8'
+    compile 'org.scala-lang:scala-compiler:2.11.8'
+    compile 'org.scala-lang:scalap:2.11.8'
+    compile 'org.apache.flink:flink-scala_2.11:1.5.0'
+    compile 'org.apache.flink:flink-streaming-scala_2.11:1.5.0'
+
+}
